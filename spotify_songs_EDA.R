@@ -5,8 +5,10 @@ spo_data <- read_csv('/home/zhapoloo/Documents/practice/Portfolio/dataset.csv')
 #and the second one is to make sure that each column has the correct data type 
 
 spo_data |>  skim()
-spo_data <- spo_data |>  distinct()
 
+spo_data <- spo_data |> 
+  select(-...1) |>  # Destruye la columna de índice basura
+  distinct(track_id, .keep_all = TRUE) # Elimina duplicados basándose SOLO en el ID y mantiene el resto de las columnas
 # here i plotted all the numeric columns so that i could see the distrubution of each 
 
 # 1. Reshape the data to long format
@@ -73,7 +75,7 @@ cor(spo_data$valence,spo_data$danceability)
 
 
 #### second question are the more popular songs cheerfull or not?
-# at least for the correlation no it shows to be in a middle point not tood sad or cheerfull 
+# at least for the correlation no it shows to be in a middle point not too sad or cheerfull 
 cor(spo_data$popularity,spo_data$valence)
 
 spo_data |>  group_by(track_genre) |>  summarize(mean(popularity), mean(valence)) |>  view()
@@ -90,7 +92,13 @@ spo_data |>  filter(acousticness >0.7) |>  summarize(mean(valence),n())
 
 ##4th are acoustic songs popular?
 #no they are not
-spo_data |>  filter(acousticness >0.7) |>  summarize(mean(popularity),n())
+spo_data |> 
+  group_by(es_muy_acustica = acousticness > 0.8) |> 
+  summarize(
+    promedio_popularidad = mean(popularity, na.rm = TRUE),
+    total_canciones = n()
+  )
+
 
 
 ##5th is the energy realted to the danceability ?
@@ -105,3 +113,5 @@ cor(spo_data$key,spo_data$valence)
 ## what are the most popular keys
 ## all has the same number about so either the data is made up or they are very likely
 spo_data |>  group_by(key) |> summarize(mean(popularity))
+
+write.csv(spo_data,'spotidy_data_clean.csv')
