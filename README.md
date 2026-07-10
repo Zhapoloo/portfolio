@@ -1,20 +1,20 @@
 
-# Análisis de Éxito Musical en Spotify
+# Análisis de Éxito Musical en Spotify.
 
-## Objetivo del Proyecto
+## Objetivo del Proyecto.
 Analizar qué características de audio (valencia, acústica, tonalidad) tienen mayor impacto en la popularidad de las canciones en Spotify, utilizando un dataset de 89k canciones únicas.
 
-## Proceso de Limpieza
+## Proceso de Limpieza.
 Se realizó una limpieza de datos en R, eliminando duplicados mediante un filtrado estricto por `track_id` y normalización de variables, pasando de un dataset original de 114k filas a uno de 89.7k registros precisos.
 
-## Insights Clave
+## Insights Clave.
 
 
-### 1. Más allá del ritmo: La correlación entre la bailabilidad y el estado de ánimo."
+### 1. Más allá del ritmo: La correlación entre la bailabilidad y el estado de ánimo.
 ![Gráfico de Acústica vs Popularidad](visualizations/mas_alla_del_ritmo.png)
 * El análisis confirma una correlación positiva clara: a mayor capacidad bailable (danceability), más alta es la valencia de la canción. Esto valida que las estructuras musicales diseñadas para el movimiento tienden a utilizar tonalidades y ritmos asociados con emociones positivas, confirmando que la 'felicidad' musical es un componente clave en el diseño de canciones bailables.
 
-### 2. El equilibrio emocional de los Hits
+### 2. El equilibrio emocional de los Hits.
 ![Gráfico de Histogramas](visualizations/equilibrio_emocional_de_los_grandes_exitos.png)
 * Al aislar las canciones más populares del mercado, observamos que estas no se inclinan hacia los extremos. Los éxitos mundiales se concentran en una valencia neutra (0.4 - 0.6), sugiriendo que la música de consumo masivo busca un balance emocional que resulte atractivo para una audiencia global y diversa, evitando polarizar a los oyentes.
 
@@ -23,13 +23,31 @@ Se realizó una limpieza de datos en R, eliminando duplicados mediante un filtra
 * Los datos revelan que las composiciones con alta acústica (>0.8) tienen una valencia significativamente menor (0.35) frente a las producciones sintéticas. Este análisis demuestra que el mercado actual castiga la 'pureza' acústica con una menor popularidad, sugiriendo que los oyentes de Spotify prefieren producciones con mayor carga de energía y texturas sonoras modernas frente a la melancolía acústica.
 
 ### 4.Tonalidad musical vs. Percepción emocional.
-![Grafico de barras](visualizations/tonalidad_vs_percepcion_musical.png)
+![Grafico de barras percepcion tonalidad emocional ](visualizations/tonalidad_vs_percepcion_musical.png)
 * Analizamos si la clave musical (Key) influía en la valencia percibida por el oyente. Los resultados muestran que, independientemente de la tonalidad, la valencia promedio se mantiene constante entre 0.4 y 0.47. Esto descarta la hipótesis de que ciertas claves musicales determinen intrínsecamente si una canción es percibida como 'alegre' o 'triste' por el usuario promedio.
 
 ### 5. La música trasciende a la técnica: El impacto de la tonalidad en la popularidad.
-![Grafico de barras](visualizations/es_la_clave_musical_factor_de_exito.png)
+![Grafico de barras clave](visualizations/es_la_clave_musical_factor_de_exito.png)
 * Al evaluar los Hits de Spotify, observamos que ninguna tonalidad específica garantiza el éxito comercial. La popularidad promedio es prácticamente uniforme en todas las claves. Esto refuerza la idea de que los factores determinantes del éxito en Spotify están vinculados a variables de producción (como el género y la energía) más que a la estructura musical técnica.
 
-## Herramientas Utilizadas
+## Herramientas Utilizadas.
 - **R (tidyverse):** Limpieza, deduplicación y análisis estadístico.
 - **Tableau:** Exploración visual y creación de dashboards.
+
+
+## Conclusión Estratégica (TL;DR)
+
+
+
+El objetivo al iniciar el estudio fue obtener insights del dataset con aprox. 87k canciones diferentes.
+
+Una de las grandes revelaciones fue notar que, contrario a lo percibido por el público, en general las canciones tienen poca relación con referencia a la key y la valencia (tristeza o felicidad transmitida).
+Otra gran sorpresa es que el público tiende a inclinarse más por producciones densas que por piezas acústicas. Además, los datos revelan que la popularidad se puede dar independientemente del sentimiento que transmita la canción con referencia a si es triste o si es alegre.
+
+Con eso en mente, la conclusión para obtener un mayor porcentaje de éxito en Spotify son 3 cosas:
+
+Evitar en lo posible las canciones acústicas.
+
+Centrarse en la energía más que en el key.
+
+Escribir con el sentimiento que se desee, pues no es determinante.

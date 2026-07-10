@@ -1,6 +1,16 @@
 library('tidyverse')
 library('skimr')
+
+
+### IMPORTANDO EL DATASET ###
+
+
 spo_data <- read_csv('/home/zhapoloo/Documents/practice/Portfolio/dataset.csv')
+
+
+### LIMPIEZA DE DATOS  ###
+
+
 #use skim para verificar que no hubiera data faltante o valores nulos y para ver los tipos de datos de cada columna
 
 spo_data |>  skim()
@@ -9,6 +19,8 @@ spo_data <- spo_data |>
   select(-...1) |>  # Destruye la columna de índice basura
   distinct(track_id, .keep_all = TRUE) # Elimina duplicados basándose SOLO en el ID y mantiene el resto de las columnas
 
+
+### VISUALIZACION DE DATOS ###
 
 #Aqui use pivot_longer para transformar los datos de ancho a largo y luego use facet_wrap para crear histogramas separados para cada columna numérica. Esto me permite ver la distribución de cada variable numérica en el conjunto de datos.
 df_long <- spo_data %>%
@@ -32,9 +44,12 @@ spo_data %>%
   pivot_longer(everything(), names_to = "variable", values_to = "value") %>%
   ggplot(aes(x = variable, y = value)) +
   geom_boxplot(fill = "lightblue", outlier.color = "red") +
-  facet_wrap(~variable, scales = "free") + # Give each plot its own scale
+  facet_wrap(~variable, scales = "free") + 
   theme_minimal() +
-  theme(axis.text.x = element_blank())    # Clean up the labels
+  theme(axis.text.x = element_blank())   
+
+
+  ### EDA ###
 
 # Ahora voy a ver la cantidad de canciones que tienen 0 de popularidad y el porcentaje que representan del total de canciones por género,
 # esto me ayudará a entender si hay algún sesgo en los datos de popularidad y si ciertos géneros tienen más canciones con baja popularidad que otros.
@@ -109,6 +124,9 @@ cor(spo_data$key,spo_data$valence)
 # todas las claves musicales tienen la misma popularidad promedio, por lo que no hay una clave musical que sea mas popular que otra.
 spo_data |>  group_by(key) |> summarize(mean(popularity)) |>  view()
 
+
+
+### EXPORTANDO EL DATASET LIMPIO ###
 
 write.csv(spo_data,'spotidy_data_clean.csv')
 
