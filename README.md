@@ -51,3 +51,8 @@ Evitar en lo posible las canciones acústicas.
 Centrarse en la energía más que en el key.
 
 Escribir con el sentimiento que se desee, pues no es determinante.
+
+
+
+# Perfil de LinkedIn 
+ https://www.linkedin.com/in/anderson-carvallo-72a452219/
